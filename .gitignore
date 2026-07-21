@@ -1,0 +1,29 @@
+# Raw data downloads — regenerate via docs/data_dictionary.md, don't commit
+data/raw/
+
+# Environment / secrets
+.env
+*.env
+**/config/secrets*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Postgres local artifacts
+*.sql.bak
+pgdata/
+
+# Tableau
+*.twbx.lock
+*.hyper
+
+# OS / editor cruft
+.DS_Store
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
