@@ -33,6 +33,10 @@ working scratchpad; `README.md` gets the polished summary at the end.
 - Remaining: NOAA CDO API token + fetch script, NRCS SNOTEL full series,
   CSCUSA full skier-visit history, Vail Resorts acquisition-year list. See
   `data_dictionary.md`'s open tasks checklist.
+- Set up local Git repo and connected it to GitHub
+  (`tadewald-trent/Colorado-Ski-Industry-Forecast`), including generating a
+  Personal Access Token for authentication (GitHub no longer accepts account
+  passwords for pushes).
 
 ## Phase 2 — Schema + load ⬜ not started
 
