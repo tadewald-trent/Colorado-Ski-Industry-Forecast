@@ -37,6 +37,11 @@ working scratchpad; `README.md` gets the polished summary at the end.
   (`tadewald-trent/Colorado-Ski-Industry-Forecast`), including generating a
   Personal Access Token for authentication (GitHub no longer accepts account
   passwords for pushes).
+- Completed the full GHCND daily SNOW/PRCP pull for all 7 stations
+  (1986-2026), via `scripts/fetch_ghcnd.py`. Fixed an early version that
+  could hang indefinitely on a stuck request; v2 added bounded retries
+  and resume-by-skipping-existing-files. Raw CSVs saved locally under
+  `data/raw/ghcnd/` (gitignored).
 
 ## Phase 2 — Schema + load ⬜ not started
 
