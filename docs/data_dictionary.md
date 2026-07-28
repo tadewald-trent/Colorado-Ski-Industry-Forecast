@@ -183,3 +183,33 @@ compiled from newspapers, USFS documents, academic studies, and archival
 CSCUSA statistical sheets. Covers ~24 Colorado ski areas back to the
 1930s-70s depending on resort age; individual resort-level disclosure
 becomes sparse industry-wide after 2010 and again after 2020.
+## RQ3 — Vail Resorts acquisitions & pass launch dates
+
+**Epic Pass:** Launched March 2008, initially $579 for Vail, Breckenridge,
+Beaver Creek, Keystone, and Heavenly (replacing an $1,850 Vail+Beaver
+Creek-only pass). Confirmed via Vail Resorts spokesperson statements and
+contemporary coverage.
+
+**Ikon Pass:** Launched by Alterra Mountain Company in 2018 at $899.
+
+**Vail Resorts acquisitions relevant to our 7 core stations / CO market:**
+
+| Year | Acquisition | Relevance |
+|---|---|---|
+| 1996 | Breckenridge, Keystone | Breckenridge = one of our 7 core stations |
+| 2002 | Heavenly (Tahoe, not CO) | Added to Epic Pass network, not CO-specific |
+| 2016 | Whistler Blackcomb ($1.1B) | Major network expansion, not CO-specific |
+| 2018 | Crested Butte, Okemo, Mount Sunapee, Stevens Pass | Crested Butte = one of our 7 core stations |
+| 2019 | Peak Resorts (17 US areas) | Not CO-specific |
+
+**Confounder flag implication:** for the `vail_resorts_revenue` table,
+mark fiscal years containing a major acquisition close as
+`is_acquisition_year = TRUE` — at minimum FY2017 (Whistler, closed Oct
+2016), FY2019 (Crested Butte/Okemo/Sunapee/Stevens, closed 2018-19), and
+FY2020 (Peak Resorts, closed fall 2019) — since these years' revenue
+jumps reflect new properties, not organic growth or weather effects.
+
+**Sources:** Vail Resorts Newsroom press releases, Durango Herald and
+Deseret News coverage of a 2026 Epic/Ikon antitrust lawsuit (which
+included historical pricing detail), 5280 Magazine and SnowBrains
+acquisition timelines.
