@@ -114,3 +114,41 @@ range at 1 year for GHCND). Requires a free token from
 - **Known gaps:** Blank cells mean that station wasn't yet operational
   on that date (stations were installed at different times) — not
   missing/bad data, just "doesn't exist yet."
+  ## RQ2 — Colorado statewide skier visits (CSCUSA)
+
+**Important methodology note:** CSCUSA's headline visit numbers are NOT
+measured consistently over time — see `scoping.md`'s confounders section
+for the full explanation. In short: Vail Resorts (Vail, Beaver Creek,
+Breckenridge, Keystone) is not a CSCUSA member and stopped disclosing its
+own visit numbers after 2013-14. CSCUSA's "members-only" totals (2014-15
+through 2017-18) are a smaller, differently-scoped metric than its
+"full-state estimate" totals (2018-19 onward, and 2013-14). Any table
+built from this data needs a `measurement_basis` column.
+
+| Season | Visits (millions) | Basis | Source |
+|---|---|---|---|
+| 2013-14 | 12.6 | full_state_estimate | CSCUSA (last yr Vail disclosed) |
+| 2013-14 | 7.1 | cscusa_members_only | CSCUSA (alt. metric, same season) |
+| 2014-15 | 7.1 | cscusa_members_only | CSCUSA |
+| 2015-16 | 7.4 | cscusa_members_only | CSCUSA (record for this metric) |
+| 2016-17 | 7.3 | cscusa_members_only | CSCUSA |
+| 2017-18 | 7.1 | cscusa_members_only | CSCUSA |
+| 2018-19 | 13.8 | full_state_estimate | CSCUSA (methodology switch point) |
+| 2019-20 | TBD | — | not yet sourced (COVID-shortened season) |
+| 2020-21 | 12.0 | full_state_estimate | CSCUSA |
+| 2021-22 | ~13.9-14.0 | full_state_estimate | CSCUSA |
+| 2022-23 | 14.8 | full_state_estimate | CSCUSA (all-time record) |
+| 2023-24 | 14.0 | full_state_estimate | CSCUSA |
+| 2024-25 | 13.8 | full_state_estimate | CSCUSA |
+| 2025-26 | 10.5 | full_state_estimate | CSCUSA (24% drop, worst since 1991-92) |
+
+**Pre-2013-14 history:** available at the individual-resort level (not
+statewide totals) from Storm Skiing's compiled dataset, covering
+1976-77 through ~2009-10, sourced from newspapers, USFS documents, and
+archival CSCUSA statistical sheets:
+`https://docs.google.com/spreadsheets/d/1XqUXoq2ohRqBhPVyQd8gn9qmI-Yf98xI-WZAiEbyzFE`
+Getting a Colorado statewide total for any given pre-2010 year from this
+source requires summing that year's Colorado resorts — not yet done.
+Also note: ski-area-level visit disclosure "dried up" industry-wide after
+2010 and further after 2020, per that source, which is itself a relevant
+data-availability fact for RQ2/RQ3.
