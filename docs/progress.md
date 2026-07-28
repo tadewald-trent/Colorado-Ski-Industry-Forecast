@@ -42,6 +42,16 @@ working scratchpad; `README.md` gets the polished summary at the end.
   could hang indefinitely on a stuck request; v2 added bounded retries
   and resume-by-skipping-existing-files. Raw CSVs saved locally under
   `data/raw/ghcnd/` (gitignored).
+- Pulled NRCS SNOTEL daily SWE (snow water equivalent) data for 41
+  stations across the 7 core stations' home counties (Summit, Routt,
+  Grand, San Miguel, Gunnison, Eagle, Mineral), via the NRCS Report
+  Generator UI. Worked through several tool quirks along the way (16M
+  value size cap, unclear "unable to run report" errors traced to an
+  unchecked column checkbox, and cross-state county name collisions —
+  e.g. a Montana "Mineral County" and New Mexico "San Miguel County"
+  both appearing in results and needing to be filtered out by state).
+  Saved to `data/raw/snotel/snotel_swe_daily.csv` (wide format — will
+  need reshaping to long format during Phase 2 schema/load).
 
 ## Phase 2 — Schema + load ⬜ not started
 
