@@ -86,3 +86,31 @@ range at 1 year for GHCND). Requires a free token from
 - [ ] Identify Vail Resorts acquisition years for the confounder flag
 - [ ] Identify Epic Pass / Ikon Pass launch dates precisely (2008 / 2018 —
       confirm exact season each took effect)
+## RQ1 — SNOTEL snowpack (SWE) for the 7 core stations' home counties
+
+- **Source:** NRCS SNOTEL network, via the interactive Report Generator
+  (`https://wcc.sc.egov.usda.gov/reportGenerator/`)
+- **Method:** Manually searched by county (Advanced Search → County filter,
+  Network = SNOTEL) for each of the 7 core stations' home counties, then
+  combined into a single custom report. One station search returned
+  results from a same-named county in a different state (e.g., a
+  "Mineral County" hit in Montana, a "San Miguel County" hit in New
+  Mexico) — filtered out by checking the State column before adding.
+- **Counties pulled:** Summit (Breckenridge), Routt (Steamboat Springs),
+  Grand (Winter Park), San Miguel (Telluride), Gunnison (Crested Butte),
+  Eagle (Vail Mountain), Mineral (Wolf Creek Summit) — all Colorado only.
+- **Stations included:** 41 total SNOTEL sites across those 7 counties
+  (includes Vail Mountain and Wolf Creek Summit themselves, plus all
+  other SNOTEL sites sharing their home county).
+- **Granularity:** Daily SWE (snow water equivalent, inches), start-of-day
+  values, full period of record per station (some stations start as
+  early as 1978, others later depending on install date).
+- **File:** `data/raw/snotel/snotel_swe_daily.csv`
+- **Format note:** This file is in **wide** format — one row per date,
+  one column per station. This is different from the GHCND snowfall data
+  (`data/raw/ghcnd/*.csv`), which is in **long** format (one row per
+  date+datatype). Will need reshaping to long format during Phase 2
+  schema/load to keep a consistent table structure.
+- **Known gaps:** Blank cells mean that station wasn't yet operational
+  on that date (stations were installed at different times) — not
+  missing/bad data, just "doesn't exist yet."
