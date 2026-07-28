@@ -16,7 +16,7 @@ working scratchpad; `README.md` gets the polished summary at the end.
 - Decided confounders get explicit flag columns in the schema, not buried
   in query WHERE-clause logic.
 
-## Phase 1 — Data acquisition 🚧 in progress
+## Phase 1 — Data acquisition ✅ in progress
 
 - Chose fixed station/resort list (not basin aggregates) for RQ1's
   north/south comparison: 4 north (Breckenridge, Steamboat Springs, Winter
@@ -52,6 +52,17 @@ working scratchpad; `README.md` gets the polished summary at the end.
   both appearing in results and needing to be filtered out by state).
   Saved to `data/raw/snotel/snotel_swe_daily.csv` (wide format — will
   need reshaping to long format during Phase 2 schema/load).
+- Documented Vail Resorts acquisition timeline (1996 Breckenridge/Keystone,
+  2016 Whistler Blackcomb, 2018 Crested Butte/Okemo/Sunapee/Stevens Pass,
+  2019 Peak Resorts) and confirmed Epic Pass (launched March 2008) / Ikon
+  Pass (launched 2018) dates, with acquisition-year flags identified for
+  the Phase 2 schema's `is_acquisition_year` confounder column.
+
+**Phase 1 complete.** All planned data sources are sourced and documented:
+GHCND snowfall (7 stations), SNOTEL SWE (41 stations), CSCUSA skier
+visits (2013-2026 + pre-2010 analog years), Vail Resorts revenue +
+acquisition timeline, and Epic/Ikon pass launch dates. Ready to move to
+Phase 2 (Postgres schema design and data load).
 
 ## Phase 2 — Schema + load ⬜ not started
 
