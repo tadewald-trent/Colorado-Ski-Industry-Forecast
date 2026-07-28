@@ -152,3 +152,34 @@ source requires summing that year's Colorado resorts — not yet done.
 Also note: ski-area-level visit disclosure "dried up" industry-wide after
 2010 and further after 2020, per that source, which is itself a relevant
 data-availability fact for RQ2/RQ3.
+**Pre-2010 analog-year totals**, computed by summing all Colorado resorts'
+individual visits for specific winters of interest (rather than
+transcribing the full 45+ year series):
+
+| Season | Total visits | Completeness | ENSO phase |
+|---|---|---|---|
+| 1982-83 | 8,078,362 | complete, all resorts reporting | El Niño (ONI +2.2) |
+| 1997-98 | 11,941,777 | complete, all resorts reporting | El Niño (ONI +2.2) |
+| 1999-2000 | 10,861,892 | complete, all resorts reporting | La Niña (ONI -1.5) |
+| 2009-10 | 11,857,879 | complete, all resorts reporting | El Niño (ONI +1.5) |
+| 2015-16 | *(incomplete)* | missing Beaver Creek, Breckenridge, Keystone, Vail Mountain | El Niño (ONI +2.6) |
+
+**Independent confirmation of the CSCUSA confounder:** the 2015-16 row's
+missing resorts are exactly the four Vail Resorts properties — this
+matches, from an entirely separate data source, the documented fact that
+Vail stopped disclosing resort-level visit numbers after 2013-14. For
+that season, use the CSCUSA members-only figure (7.4M) instead, with the
+`measurement_basis` flag noting it excludes Vail Resorts properties.
+
+**Preliminary RQ2 observation (2 data points only, not conclusive):**
+1997-98 (strong El Niño) saw ~11.9M visits vs. 1999-2000 (moderate La
+Niña) at ~10.9M — a difference in the expected direction, but confounded
+by overall industry growth trend across those years and far too small a
+sample to draw a real conclusion from yet.
+
+**Source data:** Storm Skiing's per-resort spreadsheet
+(`https://docs.google.com/spreadsheets/d/1XqUXoq2ohRqBhPVyQd8gn9qmI-Yf98xI-WZAiEbyzFE`),
+compiled from newspapers, USFS documents, academic studies, and archival
+CSCUSA statistical sheets. Covers ~24 Colorado ski areas back to the
+1930s-70s depending on resort age; individual resort-level disclosure
+becomes sparse industry-wide after 2010 and again after 2020.
