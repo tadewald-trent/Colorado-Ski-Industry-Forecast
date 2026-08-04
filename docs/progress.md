@@ -64,7 +64,33 @@ visits (2013-2026 + pre-2010 analog years), Vail Resorts revenue +
 acquisition timeline, and Epic/Ikon pass launch dates. Ready to move to
 Phase 2 (Postgres schema design and data load).
 
-## Phase 2 — Schema + load ⬜ not started
+## Phase 2 — Schema + load ✅
+
+- Installed PostgreSQL via Postgres.app; fixed PATH so `psql` works from
+  Terminal. Created the `colorado_ski` database.
+- Designed and built a 7-table schema (`stations`, `enso_oni`,
+  `snowfall_daily`, `snowpack_daily`, `skier_visits`, `vail_revenue`,
+  `pass_launches`), with confounder flags as real columns/constraints
+  rather than query-level logic: `measurement_basis` (CHECK constraint)
+  on skier_visits, `is_acquisition_year` on vail_revenue, `is_complete`
+  for known-incomplete rows.
+- Wrote and ran 6 Python load scripts (`psycopg2`), one per table group.
+  Final row counts: stations 46, enso_oni 77, pass_launches 2,
+  skier_visits 17, vail_revenue 17, snowfall_daily 168,195,
+  snowpack_daily 532,457.
+- Verified the trickiest transformation - reshaping the wide-format
+  SNOTEL CSV (one column per station) into long format - worked
+  correctly, including mapping Vail Mountain and Wolf Creek Summit's
+  SNOTEL data back onto their existing GHCND station_id rather than
+  creating duplicate station entries for the same physical location.
+- Confirmed and documented a real data characteristic during load:
+  the 2 SNOTEL-sourced GHCND stations have PRCP data only, no SNOW
+  datatype - not a bug, a property of how those stations report to
+  GHCND.
+
+**Phase 2 complete.** Database fully loaded (~701,000 rows across 7
+tables). Ready for Phase 3-5: writing the actual RQ1/RQ2/RQ3 analysis
+queries.
 
 ## Phase 3–5 — RQ1/RQ2/RQ3 SQL analysis ⬜ not started
 

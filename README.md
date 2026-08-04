@@ -1,6 +1,6 @@
 # Colorado Rockies Snowfall → Ski Industry Business Impact
 
-**Status:** 🚧 In progress — Phase 1 (data acquisition)
+**Status:** 🚧 In progress — Phase 3 (RQ1-RQ3 SQL analysis)
 **Stack:** PostgreSQL · SQL · Python (acquisition/cleaning) · Tableau Public
 
 ## Motivating question
