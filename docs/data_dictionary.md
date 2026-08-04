@@ -36,6 +36,16 @@ GHCND — automated, shorter records, generally excellent coverage.
 range at 1 year for GHCND). Requires a free token from
 `https://www.ncdc.noaa.gov/cdo-web/token`. See `scripts/fetch_ghcnd.py`
 (once written) for the pull script.
+**Data quality note confirmed during Phase 2 load:** Vail Mountain and
+Wolf Creek Summit (the 2 SNOTEL-sourced GHCND stations, `USS0...` prefix)
+have **PRCP (precipitation) data only — no SNOW (snowfall) datatype
+exists for either station in NOAA's GHCND archive.** This appears to be
+a genuine characteristic of how SNOTEL-sourced stations report into
+GHCND, not a data-pull error (confirmed: all 41,986 combined rows for
+these 2 stations are PRCP; 0 are SNOW). For these 2 stations, use the
+`snowpack_daily` table (SNOTEL SWE) as the snow metric instead of
+`snowfall_daily`. The other 5 core stations (COOP-sourced) have both
+SNOW and PRCP as expected.
 
 ## RQ1 — ENSO / ONI index
 
