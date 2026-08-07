@@ -72,7 +72,46 @@ GROUP BY wps.region
 ORDER BY wps.region;
 
 
--- Query 3: Station-by-station detail (not just region averages) -
+-- ============================================================
+-- IMPROVEMENT 2: use each station's full available history
+-- rather than the shared 1986-2026 window. Since each station is
+-- aggregated independently before regional comparison, stations
+-- don't need matching date ranges. Capped at 1950 regardless,
+-- since enso_oni has no data before 1950.
+-- ============================================================
+
+-- Query 7: GHCND total seasonal snowfall by ENSO phase, north vs
+-- south, using each station's full period of record (back to
+-- 1950, the limit of the enso_oni table) instead of the shared
+-- 1986-2026 window.
+WITH winter_snowfall AS (
+    SELECT
+        sf.station_id,
+        s.station_name,
+        s.region,
+        CASE
+            WHEN EXTRACT(MONTH FROM sf.obs_date) <= 6
+                THEN EXTRACT(YEAR FROM sf.obs_date)
+            ELSE EXTRACT(YEAR FROM sf.obs_date) + 1
+        END AS winter_year,
+        SUM(sf.value_inches) AS total_snowfall
+    FROM snowfall_daily sf
+    JOIN stations s ON s.station_id = sf.station_id
+    WHERE sf.datatype = 'SNOW'
+      AND s.region IS NOT NULL
+    GROUP BY sf.station_id, s.station_name, s.region, winter_year
+)
+SELECT
+    ws.region,
+    COUNT(DISTINCT ws.station_id) AS stations_in_region,
+    MIN(ws.winter_year) AS earliest_winter,
+    ROUND(AVG(ws.total_snowfall) FILTER (WHERE o.enso_phase = 'El Nino'), 1) AS avg_snowfall_el_nino,
+    ROUND(AVG(ws.total_snowfall) FILTER (WHERE o.enso_phase = 'La Nina'), 1) AS avg_snowfall_la_nina,
+    ROUND(AVG(ws.total_snowfall) FILTER (WHERE o.enso_phase = 'Neutral'), 1) AS avg_snowfall_neutral
+FROM winter_snowfall ws
+JOIN enso_oni o ON o.winter_year = ws.winter_year
+GROUP BY ws.region
+ORDER BY ws.region;-- Query 3: Station-by-station detail (not just region averages) -
 -- useful to check whether the regional pattern is consistent across
 -- all stations in that region, or driven by just one or two.
 WITH winter_peak_swe AS (
@@ -181,3 +220,41 @@ JOIN enso_oni o ON o.winter_year = ws.winter_year
 WHERE ws.winter_year BETWEEN 1986 AND 2026
 GROUP BY ws.station_name, ws.region
 ORDER BY ws.region, ws.station_name;
+
+
+-- ============================================================
+-- IMPROVEMENT 1: expanded SNOTEL/SWE comparison using all 46
+-- stations (not just the 2 core SNOTEL stations), now that every
+-- station has a region assigned based on its county. This should
+-- be a much more robust version of queries 1-3.
+-- ============================================================
+
+-- Query 6: Average peak-season SWE by ENSO phase, north vs south,
+-- using all 46 stations.
+WITH winter_peak_swe AS (
+    SELECT
+        sp.station_id,
+        s.region,
+        CASE
+            WHEN EXTRACT(MONTH FROM sp.obs_date) <= 6
+                THEN EXTRACT(YEAR FROM sp.obs_date)
+            ELSE EXTRACT(YEAR FROM sp.obs_date) + 1
+        END AS winter_year,
+        MAX(sp.swe_inches) AS peak_swe
+    FROM snowpack_daily sp
+    JOIN stations s ON s.station_id = sp.station_id
+    WHERE s.region IS NOT NULL
+    GROUP BY sp.station_id, s.region, winter_year
+)
+SELECT
+    wps.region,
+    COUNT(DISTINCT wps.station_id) AS stations_in_region,
+    ROUND(AVG(wps.peak_swe) FILTER (WHERE o.enso_phase = 'El Nino'), 2) AS avg_swe_el_nino,
+    ROUND(AVG(wps.peak_swe) FILTER (WHERE o.enso_phase = 'La Nina'), 2) AS avg_swe_la_nina,
+    ROUND(AVG(wps.peak_swe) FILTER (WHERE o.enso_phase = 'Neutral'), 2) AS avg_swe_neutral
+FROM winter_peak_swe wps
+JOIN enso_oni o ON o.winter_year = wps.winter_year
+WHERE wps.winter_year BETWEEN 1986 AND 2026
+GROUP BY wps.region
+ORDER BY wps.region;
+
