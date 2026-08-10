@@ -11,6 +11,35 @@ positive ENSO relationship than northern Colorado, consistent with
 classic El Niño storm-track teleconnections. Northern Colorado's
 relationship is expected to be weak or inconsistent.
 
+## Background: what ENSO/ONI actually measures
+
+ENSO (El Niño-Southern Oscillation) is a recurring climate pattern in
+the tropical Pacific Ocean. Normally, trade winds push warm surface
+water westward toward Asia/Australia, allowing cold water to upwell
+near South America. During El Niño, those trade winds weaken and warm
+water shifts back east, raising sea surface temperatures in the central
+and eastern tropical Pacific. La Niña is the opposite: stronger trade
+winds, more warm water pushed west, and below-normal eastern Pacific
+temperatures. This large-scale ocean heat redistribution reshapes storm
+tracks and jet stream patterns well beyond the tropics, including over
+North America, the "teleconnection" this project's hypothesis is built
+on.
+
+ONI (Oceanic Niño Index) is NOAA's standard way of quantifying ENSO
+strength: a rolling 3-month average sea surface temperature anomaly
+(in degrees C, relative to the long-term normal) in a defined patch of
+the central/eastern Pacific called the Niño 3.4 region. This project
+uses the DJF (Dec-Jan-Feb) value, matching the core of Colorado's
+winter season. Classification follows NOAA's own convention: ONI >=
++0.5 is El Niño, ONI <= -0.5 is La Niña, and values in between are
+Neutral.
+
+Classic ENSO teleconnection theory predicts El Niño winters push the
+Pacific storm track further south, favoring above-normal moisture
+across the southern US (including southern Colorado) while leaving the
+Pacific Northwest and northern Rockies drier than normal. This is the
+physical basis for this project's original hypothesis.
+
 ## Method
 
 Queries in `sql/analysis/rq1_enso_snowpack.sql`; all statistical testing
@@ -91,9 +120,16 @@ in its own right.
   significant in either case.
 - **This does not mean ENSO has zero effect on Colorado weather in
   general.** ENSO's broader climatological effects on the western U.S.
-  are well documented at larger geographic scales. It means that, for
-  these specific 7 core stations and this specific dataset, no
-  detectable station-level relationship was found.
+  are well documented at continental and regional scales, and the
+  physical mechanism (a shifted Pacific storm track) is real. The null
+  result found here means that at the scale of these 7 individual
+  mountain stations, that broader signal is either too small, too
+  inconsistent, or too easily overwhelmed by other locally dominant
+  factors (jet stream position on a given day, individual storm
+  tracks, elevation and terrain effects) to detect with this dataset.
+  A well-documented large-scale climate signal does not automatically
+  imply a detectable station-level effect at this geographic
+  resolution.
 
 ## Conclusion
 
