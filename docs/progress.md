@@ -92,9 +92,30 @@ Phase 2 (Postgres schema design and data load).
 tables). Ready for Phase 3-5: writing the actual RQ1/RQ2/RQ3 analysis
 queries.
 
-## Phase 3–5 — RQ1/RQ2/RQ3 SQL analysis ⬜ not started
+## RQ1-RQ4 — Analysis complete ✅
 
-## Phase 6 — Synthesis (RQ4) ⬜ not started
+- **RQ1 (ENSO → snowfall):** Tested 8 ways (t-tests + regressions,
+  GHCND + SNOTEL data, extended to 1950). Clean, well-powered null
+  result — no statistically significant relationship found in either
+  region. A borderline early result (p=0.047) correctly did not survive
+  extension to the full dataset (p=0.083).
+- **RQ2 (snowfall → visits):** Suggestive but statistically fragile.
+  Strong result in the modern pass-pricing era (r²=86%, p=0.0025)
+  did not survive a sensitivity check removing one extreme season
+  (r²=61%, p=0.068). Reported honestly as unconfirmed.
+- **RQ3 (visits → revenue):** The most robust finding of the project.
+  Survived multiple sensitivity checks (excluding the acquisition
+  year, restricting to a tight recent 5-year cluster) with consistent
+  r²=75-78% and p<0.05 throughout, despite the smallest sample size.
+- **RQ4 (synthesis):** Direct, honest answer to the original
+  motivating question: an ENSO forecast does not provide a
+  statistically supported basis for predicting Colorado ski industry
+  performance, because the chain breaks at the very first link
+  (ENSO → snowfall), regardless of how robust the downstream
+  visits → revenue link is.
+
+**Remaining work:** Phase 6.5 (Tableau dashboard), Phase 7 (update
+top-level README.md with real findings, final polish).
 
 ## Phase 6.5 — Tableau dashboard ⬜ not started
 
