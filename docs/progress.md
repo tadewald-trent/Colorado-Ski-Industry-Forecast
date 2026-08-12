@@ -3,6 +3,8 @@
 Running log of what's been done, phase by phase. Not polished — this is the
 working scratchpad; `README.md` gets the polished summary at the end.
 
+**Live dashboard:** [Colorado Ski Industry Analysis on Tableau Public](https://public.tableau.com/views/ColoradoSkiIndustryAnalysis/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+
 ## Phase 0 — Scoping ✅
 
 - Defined the motivating question and broke it into RQ1–RQ4, each with a
@@ -117,6 +119,21 @@ queries.
 **Remaining work:** Phase 6.5 (Tableau dashboard), Phase 7 (update
 top-level README.md with real findings, final polish).
 
-## Phase 6.5 — Tableau dashboard ⬜ not started
+## Phase 6.5 — Tableau dashboard ✅
+
+- Connected Tableau Public to the project data via CSV export (Tableau
+  Public cannot connect directly to a local Postgres database — that's
+  a paid Tableau Desktop/Server feature only). Built
+  `scripts/export_dashboard_data.py` to export RQ1-RQ3 query results
+  as clean CSVs.
+- Built 3 chart sheets (one per RQ) plus a synthesis dashboard, each
+  chart titled with its actual statistical result rather than a
+  generic label (e.g. "RQ1: ... (Not Statistically Significant)").
+- Removed misleading trend lines drawn through too few points (RQ3's
+  1-point acquisition-year split, RQ2's 2-3 point pre-Epic/Epic-only
+  eras), keeping only trend lines backed by real sample sizes.
+- Published to Tableau Public: [link]
+
+**Phase 6.5 complete.**
 
 ## Phase 7 — GitHub polish ⬜ not started
