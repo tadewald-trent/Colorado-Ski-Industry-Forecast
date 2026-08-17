@@ -132,8 +132,8 @@ top-level README.md with real findings, final polish).
 - Removed misleading trend lines drawn through too few points (RQ3's
   1-point acquisition-year split, RQ2's 2-3 point pre-Epic/Epic-only
   eras), keeping only trend lines backed by real sample sizes.
-- Published to Tableau Public: [link]
+- Published to Tableau Public: [https://public.tableau.com/app/profile/trent.tadewald/viz/ColoradoSkiIndustryAnalysis/Dashboard1]
 
 **Phase 6.5 complete.**
 
-## Phase 7 — GitHub polish ⬜ not started
+## Phase 7 — GitHub polish ✅ complete
