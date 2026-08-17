@@ -2,7 +2,19 @@
 
 **Status:** ✅ Complete — all research questions answered, dashboard published
 **Stack:** PostgreSQL · SQL · Python (acquisition/cleaning) · Tableau Public
-**Live dashboard:** [Colorado Ski Industry Analysis on Tableau Public](https://public.tableau.com/views/ColoradoSkiIndustryAnalysis/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+**Live dashboard:** [Colorado Ski Industry Analysis on Tableau Public](https://public.tableau.com/app/profile/trent.tadewald/viz/ColoradoSkiIndustryAnalysis/Dashboard1)
+
+**TL;DR:** Tested whether El Niño (ENSO) forecasts can predict Colorado ski
+industry revenue, by chaining four sub-questions: ENSO → snowfall → skier
+visits → revenue. Answer: no — the chain breaks at the very first link
+(ENSO does not predict snowfall at these 7 Colorado stations, across 8
+separate tests), even though the back half of the chain (visits → revenue)
+is genuinely robust (r²=75-78%, survives every sensitivity check). Full
+pipeline: Python data acquisition from 4 public sources → PostgreSQL schema
+with confounders as real constraints, not query logic → SQL analysis →
+Python significance testing (scipy) → Tableau dashboard.
+
+![Dashboard preview](docs/images/dashboard-screenshot.png)
 
 ## Motivating question
 
@@ -73,3 +85,30 @@ through this pathway. See
 **Interactive dashboard:** all three quantitative findings are
 visualized, with their actual statistical results and honest caveats,
 in the Tableau Public dashboard linked above.
+
+## How to reproduce this
+
+1. Install PostgreSQL locally and create a database (e.g. `colorado_ski`).
+2. Clone this repo, then install Python dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Copy `.env.example` to `.env` (not committed — see `.gitignore`) and add
+   a free NOAA CDO API token (required to re-pull GHCND station data — see
+   `docs/data_dictionary.md` for how to get one). Postgres connection
+   details are read from the standard `psycopg2`/`libpq` environment
+   variables (e.g. `PGHOST`, `PGUSER`) if your local setup needs them;
+   scripts connect to a local `colorado_ski` database by default.
+4. Run `sql/schema.sql` against your database to create the 7 tables.
+5. Regenerate the raw data downloads per the sourcing notes in
+   [`docs/data_dictionary.md`](docs/data_dictionary.md) (raw files are
+   gitignored, not committed), then run the `scripts/load_*.py` scripts to
+   load them into Postgres.
+6. Run the analysis: the `sql/analysis/*.sql` query sets, and the
+   `scripts/rq*_significance_test.py` scripts for the statistical tests.
+7. Run `scripts/export_dashboard_data.py` to regenerate the CSVs under
+   `dashboard/data/`, which feed the Tableau workbook.
+
+## License
+
+MIT — see [`LICENSE`](LICENSE).
